@@ -22,6 +22,6 @@ Route::get('/about', function(){
 });
 
 Route::get('/testModel',function(){
-	$query = App\Post::all();
+	$query = App\Post::find(1);
 	return $query;
 });
