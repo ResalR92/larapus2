@@ -20,3 +20,8 @@ Route::get('/about', function(){
 			Selamat datang di webapp saya <br>
 			Laravel, emang keren.';
 });
+
+Route::get('/testModel',function(){
+	$query = App\Post::all();
+	return $query;
+});
