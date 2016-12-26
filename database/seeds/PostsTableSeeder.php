@@ -11,6 +11,13 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $posts = [
+        	['title'=>'Tips Mahir Coding','content'=>'lorem ipsum'],
+        	['title'=>'Haruskah menunda lulus demi Kematangan Skill','content'=>'lorem ipsum'],
+        	['title'=>'Membangun Visi Misi Tubuh Kristus','content'=>'Haleluya'],
+        ];
+
+        //Masukkan data ke database
+        DB::table('posts')->insert($posts);
     }
 }
