@@ -25,3 +25,7 @@ Route::get('/testModel',function(){
 
 	return $post;
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
