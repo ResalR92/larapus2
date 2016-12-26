@@ -22,6 +22,8 @@ Route::get('/about', function(){
 });
 
 Route::get('/testModel',function(){
-	$query = App\Post::where('title','like','%mahir%')->get();
-	return $query;
+	$post = App\Post::find(1);
+	$post->title = 'Cepat Mahir Coding';
+	$post->save();
+	return $post;
 });
