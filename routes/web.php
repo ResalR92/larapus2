@@ -22,6 +22,6 @@ Route::get('/about', function(){
 });
 
 Route::get('/testModel',function(){
-	$query = App\Post::find(1);
+	$query = App\Post::where('title','like','%mahir%')->get();
 	return $query;
 });
