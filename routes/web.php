@@ -22,6 +22,10 @@ Route::get('/about', function(){
 });
 
 Route::get('/testModel',function(){
-	$post = App\Post::find(1);
-	$post->delete();
+	$post = new App\Post;
+	$post->title = 'Cepat Mahir Coding';
+	$post->content = 'Coding everyday,understanding the pattern';
+	$post->save();
+
+	return $post;
 });
