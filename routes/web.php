@@ -10,6 +10,10 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
+  //Route isi disini...
+});
+
 
 Route::get('/', function () {
     return view('welcome');
