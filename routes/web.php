@@ -11,7 +11,7 @@
 |
 */
 Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
-  //Route isi disini...
+  Route::resource('authors','AuthorsController');
 });
 
 
