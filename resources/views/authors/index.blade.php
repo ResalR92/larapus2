@@ -13,10 +13,14 @@
             <h2 class="panel-title">Penulis</h2>
           </div>
           <div class="panel-body">
-            Diisi dengan DataTable
+            {!! $html->table(['class'=>'table-striped']) !!}
           </div>
         </div>
       </div>
     </div>
   </div>
+@endsection
+
+@section('scripts')
+  {!! $html->scripts() !!}
 @endsection
