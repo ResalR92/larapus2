@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Laratrust\LaratrustFacade as Laratrust;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -35,6 +36,7 @@ class HomeController extends Controller
 
     protected function memberDashboard()
     {
-        return view('dashboard.member');
+        $borrowLogs = Auth::user()->borrowLogs()->borrowed()->get();
+        return view('dashboard.member', compact('borrowLogs'));
     }
 }

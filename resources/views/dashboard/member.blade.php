@@ -10,6 +10,23 @@
 					</div>
 					<div class="panel-body">
 						Selamat Datang di Larapus.
+						<table class="table">
+							<tbody>
+								<tr>
+									<td class="text-muted">Buku dipinjam</td>
+									<td>
+										@if($borrowLogs->count() == 0)
+											Tidak ada buku dipinjam
+										@endif
+										<ul>
+											@foreach($borrowLogs as $borrowLog)
+												<li>{{ $borrowLog->book->title }}</li>
+											@endforeach
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
