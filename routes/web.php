@@ -16,9 +16,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
 });
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','GuestController@index');
 
 Route::get('/about', 'MyController@showAbout');
 
