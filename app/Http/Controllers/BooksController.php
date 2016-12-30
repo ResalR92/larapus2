@@ -26,7 +26,7 @@ class BooksController extends Controller
                         'model' => $book,
                         'form_url' => route('books.destroy',$book->id),
                         'edit_url' => route('books.edit',$book->id),
-                        'confirm_message' => 'Yakin mau menghapus '.$book->id.'?',
+                        'confirm_message' => 'Yakin mau menghapus '.$book->title.'?',
                         ]);
                 })->make(true);
         }
@@ -184,6 +184,28 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+
+        // hapus cover lama, jika ada
+        if ($book->cover) {
+            $old_cover = $book->cover;
+            $filepath = public_path() . DIRECTORY_SEPARATOR . 'img'
+                . DIRECTORY_SEPARATOR . $book->cover;
+
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) {
+                // File sudah dihapus/tidak ada
+            }
+        }
+
+        $book->delete();
+
+        Session::flash("flash_notification", [
+            "level"=>"success",
+            "message"=>"Buku berhasil dihapus"
+        ]);
+
+        return redirect()->route('books.index');
     }
 }
