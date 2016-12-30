@@ -20,7 +20,17 @@
 										@endif
 										<ul>
 											@foreach($borrowLogs as $borrowLog)
-												<li>{{ $borrowLog->book->title }}</li>
+												<li>
+													{!! Form::open(['url' => route('member.books.return', $borrowLog->book_id),
+			                                                'method'       => 'put',
+			                                                'class'        => 'form-inline js-confirm',
+			                                                'data-confirm' => "Anda yakin hendak mengembalikan " . $borrowLog->book->title . "?"] ) !!}
+
+			                                            {{ $borrowLog->book->title }}
+			                                            {!! Form::submit('Kembalikan', ['class'=>'btn btn-xs btn-default']) !!}
+
+			                                        {!! Form::close() !!}
+												</li>
 											@endforeach
 										</ul>
 									</td>
