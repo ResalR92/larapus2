@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Author;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
+use Session;
 
 class AuthorsController extends Controller
 {
@@ -45,7 +46,13 @@ class AuthorsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,['name'=>'required|unique:authors']);
-        $author = Author::create($request->all());
+        $author = Author::create($request->only('name'));
+
+        Session::flash('flash_notification',[
+          'level' => 'success',
+          'message' => "Berhasil menyimpan $author->name"
+        ]);
+
         return redirect()->route('authors.index');
     }
 

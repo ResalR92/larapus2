@@ -88,7 +88,7 @@
                 </div>
             </div>
         </nav>
-
+        @include('layouts._flash')
         @yield('content')
     </div>
 
