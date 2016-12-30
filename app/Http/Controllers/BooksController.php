@@ -178,8 +178,10 @@ class BooksController extends Controller
     {
         $book = Book::find($id);
 
+        $cover = $book->cover;
+        if(!$book->delete()) return redirect()->back();
         // hapus cover lama, jika ada
-        if ($book->cover) {
+        if ($cover) {
             $old_cover = $book->cover;
             $filepath = public_path() . DIRECTORY_SEPARATOR . 'img'
                 . DIRECTORY_SEPARATOR . $book->cover;
