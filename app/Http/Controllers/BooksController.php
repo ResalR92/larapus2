@@ -8,6 +8,7 @@ use Yajra\Datatables\Datatables;
 use App\Book;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\StoreBookRequest;
 
 class BooksController extends Controller
 {
@@ -56,15 +57,8 @@ class BooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        $this->validate($request,[
-            'title' => 'required|unique:books,title',
-            'author_id' => 'required|exists:authors,id',
-            'amount' => 'required|numeric',
-            'cover'  => 'image|max:2048'
-        ]);
-
         $book = Book::create($request->except('cover'));
 
         //Isi filed cove jika ada cover yang diupload
