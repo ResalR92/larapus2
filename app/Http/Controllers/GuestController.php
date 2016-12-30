@@ -18,6 +18,9 @@ class GuestController extends Controller
     		$books = Book::with('author');
 
     		return Datatables::of($books)
+                ->addColumn('stock', function($book){
+                    return $book->stock;
+                })
     			->addColumn('action', function($book){
     				if(Laratrust::hasRole('admin')) return '';
 
@@ -27,6 +30,7 @@ class GuestController extends Controller
 
     	$html = $htmlBuilder
     		    ->addColumn(['data'=>'title','name'=>'title','title'=>'Judul'])
+                ->addColumn(['data'=>'stock','name'=>'stock','title'=>'Stok','orderable'=>false,'searchable'=>false])
     		    ->addColumn(['data'=>'author.name','name'=>'author.name','title'=>'Penulis'])
     		    ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
