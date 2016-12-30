@@ -10,25 +10,29 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
-  Route::resource('authors','AuthorsController');
-  Route::resource('books','BooksController');
-});
-
-
-Route::get('/','GuestController@index');
-
+//latihan Controller
 Route::get('/about', 'MyController@showAbout');
-
 Route::get('/testModel',function(){
 	$post = new App\Post;
 	$post->title = 'Cepat Mahir Coding';
 	$post->content = 'Coding everyday,understanding the pattern';
 	$post->save();
-
 	return $post;
 });
 
-Auth::routes();
+Route::get('/','GuestController@index');
 
+Auth::routes();
 Route::get('/home', 'HomeController@index');
+
+
+Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
+  Route::resource('authors','AuthorsController');
+  Route::resource('books','BooksController');
+});
+
+Route::get('books/{book}/borrow', [
+  'middleware' => ['auth', 'role:member'],
+  'as'         => 'guest.books.borrow',
+  'uses'       => 'BooksController@borrow'
+]);
