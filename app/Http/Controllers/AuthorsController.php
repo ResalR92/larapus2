@@ -25,6 +25,7 @@ class AuthorsController extends Controller
                     'model' => '$author',
                     'form_url' => route('authors.destroy',$author->id),
                     'edit_url' => route('authors.edit', $author->id),
+                    'confirm_message' => 'Yakin mau menghapus ' . $author->name . '?'
                   ]);
                 })->make(true);
         }
