@@ -10,7 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
   Route::resource('authors','AuthorsController');
 });
 
