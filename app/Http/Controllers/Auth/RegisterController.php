@@ -97,13 +97,14 @@ class RegisterController extends Controller
 
     public function sendVerification()
     {
-        $user = $this;
-        $token = str_random(40);
-        $user->verification_token = $token;
-        $user->save();
-
-        Mail::send('auth.emails.verification',compact('user','token'), function($m) use ($user){
-            $m->to($user->email,$user->name)->subject('Verifikasi Akun Larapus');
-        });
+        $user = User::where('email', $request->get('email'))->first();
+        if ($user && !$user->is_verified) {
+            $user->sendVerification();
+            Session::flash("flash_notification", [
+                "level"=>"success",
+                "message"=>"Silahkan klik pada link aktivasi yang telah kami kirim."
+            ]);
+        }
+        return redirect('/login');
     }
 }

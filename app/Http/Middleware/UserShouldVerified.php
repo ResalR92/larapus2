@@ -23,7 +23,8 @@ class UserShouldVerified
 
             Session::flash('flash_notification',[
                 'level' => 'warning',
-                'message' => "Akun Anda belum aktif. Silahkan klik pada link aktivasi yang telah kami kirim"
+                'message' => "Silahkan klik pada link aktivasi yang telah kami kirim.
+          <a class='alert-link' href='$link'>Kirim lagi</a>."
             ]);
             return redirect('/login');
         }
