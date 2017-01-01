@@ -56,4 +56,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\BorrowLog');
     }
+
+    public function verify()
+    {
+        $this->is_verified = 1;
+        $this->verification_token = null;
+        $this->save();
+    }
 }

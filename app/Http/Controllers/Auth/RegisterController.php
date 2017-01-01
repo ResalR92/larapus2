@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Role;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -77,7 +80,20 @@ class RegisterController extends Controller
         return $user;
     }
 
-    public function verify(Request $request, $token) {}
+    public function verify(Request $request, $token)
+    {
+        $email = $request->get('email');
+        $user  = User::where('verification_token', $token)->where('email', $email)->first();
+        if ($user) {
+            $user->verify();
+            Session::flash("flash_notification", [
+                "level"   => "success",
+                "message" => "Berhasil melakukan verifikasi."
+            ]);
+            Auth::login($user);
+        }
+        return redirect('/');
+    }
 
     public function sendVerification()
     {
