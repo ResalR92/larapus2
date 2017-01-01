@@ -23,6 +23,8 @@ Route::get('/testModel',function(){
 Route::get('/','GuestController@index');
 
 Auth::routes();
+Route::get('auth/verify/{token}', 'Auth\RegisterController@verify');
+
 Route::get('/home', 'HomeController@index');
 
 
