@@ -28,6 +28,8 @@ Route::get('auth/send-verification', 'Auth\RegisterController@sendVerification')
 
 Route::get('/home', 'HomeController@index');
 Route::get('settings/profile','SettingsController@profile');
+Route::get('settings/profile/edit','SettingsController@editProfile');
+Route::post('settings/profile','SettingsController@updateProfile');
 
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){

@@ -25,7 +25,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<a href="#" class="btn btn-primary">Ubah</a>
+						<a href="{{ url('/settings/profile/edit') }}" class="btn btn-primary">Ubah</a>
 					</div>
 				</div>
 			</div>
