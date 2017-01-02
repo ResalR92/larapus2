@@ -36,7 +36,7 @@ class HomeController extends Controller
         $books = [];
         foreach(Author::all() as $author) {
             array_push($authors, $author->name);
-            array_push($books, $books->count());
+            array_push($books, $author->books->count());
         }
 
         return view('dashboard.admin',compact('authors','books'));
