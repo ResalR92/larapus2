@@ -139,6 +139,16 @@ class MembersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = User::find($id);
+
+        if ($member->hasRole('member')) {
+            $member->delete();
+            Session::flash("flash_notification", [
+                "level"=>"success",
+                "message"=>"Member berhasil dihapus"
+            ]);
+        }
+
+        return redirect()->route('members.index');
     }
 }
