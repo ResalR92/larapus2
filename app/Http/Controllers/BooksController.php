@@ -245,4 +245,11 @@ class BooksController extends Controller
 
         return redirect('/home');
     }
+
+    public function export() 
+    {
+        return view('books.export');
+    }
+
+    public function exportPost() {}
 }

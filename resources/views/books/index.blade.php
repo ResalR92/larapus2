@@ -13,7 +13,10 @@
 						<h2 class="panel-title">Buku</h2>
 					</div>
 					<div class="panel-body">
-						<p><a href="{{ url('/admin/books/create') }}" class="btn btn-primary">Tambah</a></p>
+						<p>
+							<a href="{{ url('/admin/books/create') }}" class="btn btn-primary">Tambah</a>
+							<a href="{{ url('/admin/export/books') }}" class="btn btn-primary">Export</a>
+						</p>
 
 						{!! $html->table(['class'=>'table-striped']) !!}
 					</div>

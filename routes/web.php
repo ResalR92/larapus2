@@ -43,6 +43,16 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
     'as' => 'statistics.index',
     'uses' => 'StatisticsController@index'
   ]);
+
+  Route::get('export/books',[
+    'as' => 'export.books',
+    'uses' => 'BooksController@export',
+  ]);
+
+  Route::post('export/books',[
+    'as' => 'export.books.post',
+    'uses' => 'BooksController@exportPost',
+  ]);
 });
 
 Route::get('books/{book}/borrow', [
