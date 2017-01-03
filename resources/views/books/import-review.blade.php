@@ -16,7 +16,7 @@
         </div>
 
         <div class="panel-body">
-          <p> <a class="btn btn-success" href="{{ url('/admin/books')}}">Selesai</a> </p>
+          {{-- <p> <a class="btn btn-success" href="{{ url('/admin/books')}}">Selesai</a> </p> --}}
           <table class="table table-hover table-striped">
             <thead>
               <tr>
