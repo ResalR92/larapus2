@@ -302,6 +302,25 @@ class BooksController extends Controller
         return $pdf->download('books.pdf');
     }
 
-    public function generateExcelTemplate() {}
+    public function generateExcelTemplate() 
+    {
+        Excel::create('Template Import Buku', function($excel) {
+            // Set the properties
+            $excel->setTitle('Template Import Buku')
+                ->setCreator('Larapus')
+                ->setCompany('Larapus')
+                ->setDescription('Template import buku untuk Larapus');
+
+            $excel->sheet('Data Buku', function($sheet) {
+                $row = 1;
+                $sheet->row($row, [
+                    'judul',
+                    'penulis',
+                    'jumlah'
+                ]);
+            });
+
+        })->export('xlsx');
+    }
     public function importExcel(Request $request) {}
 }
