@@ -14,9 +14,30 @@
 						<h2 class="panel-title">Tambah Buku</h2>
 					</div>
 					<div class="panel-body">
-						{!! Form::open(['url'=>route('books.store'),'method'=>'post','files'=>'true','class'=>'form-horizontal']) !!}
-							@include('books._form')
-						{!! Form::close() !!}
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="active" role="presentation">
+								<a href="#form" aria-controls="form" role="tab" data-toggle="tab">
+									<i class="fa fa-pencil-square-o"></i> Isi Form
+								</a>
+							</li>
+							<li role="presentation">
+								<a href="#upload" aria-controls="upload" role="tab" data-toggle="tab">
+									<i class="fa fa-cloud-upload"></i> Upload Excel
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="form" role="tabpanel">
+								{!! Form::open(['url'=>route('books.store'),'method'=>'post','files'=>'true','class'=>'form-horizontal']) !!}
+									@include('books._form')
+								{!! Form::close() !!}
+							</div>
+							<div class="tab-pane" id="upload" role="tabpanel">
+								{!! Form::open(['url'=>route('import.books'),'method'=>'post','files'=>'true','class'=>'form-horizontal']) !!}
+									@include('books._import')
+								{!! Form::close() !!}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
