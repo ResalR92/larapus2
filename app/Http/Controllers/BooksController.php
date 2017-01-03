@@ -15,6 +15,7 @@ use App\BorrowLog;
 use Illuminate\Support\Facades\Auth;
 use App\Exceptions\BookException;
 use Excel;
+use PDF;
 
 class BooksController extends Controller
 {
@@ -257,12 +258,19 @@ class BooksController extends Controller
         //validasi
         $this->validate($request,[
             'author_id'=>'required',
+            'type' => 'required|in:pdf,xls'
         ],[
             'author_id.required'=>'Anda belum memilih penulis. Pilih minimal 1 penulis'
         ]);
 
         $books = Book::whereIn('id',$request->get('author_id'))->get();
 
+        $handler = 'export'.ucfirst($request->get('type'));
+        return $this->$handler($books);
+    }
+
+    private function exportXls($books)
+    {
         Excel::create('Data Buku Larapus2', function($excel) use($books){
             //Set Property
             $excel->setTitle('Data Buku Larapus2')
@@ -286,5 +294,11 @@ class BooksController extends Controller
                 }
             });
         })->export('xls');
+    }
+
+    private function exportPdf($books)
+    {
+        $pdf = PDF::loadview('pdf.books',compact('books'));
+        return $pdf->download('books.pdf');
     }
 }
