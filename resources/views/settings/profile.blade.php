@@ -23,6 +23,10 @@
 									<td class="text-muted">Email</td>
 									<td>{{ auth()->user()->email }}</td>
 								</tr>
+								<tr>
+									<td class="text-muted">Login Terakhir</td>
+									<td>{{ auth()->user()->last_login }}</td>
+								</tr>
 							</tbody>
 						</table>
 						<a href="{{ url('/settings/profile/edit') }}" class="btn btn-primary">Ubah</a>

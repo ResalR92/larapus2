@@ -26,6 +26,8 @@ class LogLastLogin
      */
     public function handle(Login $event)
     {
-        //
+        $user = $event->user;
+        $user->last_login = new \DateTime;
+        $user->save();
     }
 }
