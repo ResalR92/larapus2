@@ -301,4 +301,7 @@ class BooksController extends Controller
         $pdf = PDF::loadview('pdf.books',compact('books'));
         return $pdf->download('books.pdf');
     }
+
+    public function generateExcelTemplate() {}
+    public function importExcel(Request $request) {}
 }
