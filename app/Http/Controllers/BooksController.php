@@ -184,6 +184,10 @@ class BooksController extends Controller
 
         $cover = $book->cover;
         if(!$book->delete()) return redirect()->back();
+
+        // handle hapus buku via ajax
+        if ($request->ajax()) return response()->json(['id' => $id]);
+        
         // hapus cover lama, jika ada
         if ($cover) {
             $old_cover = $book->cover;
@@ -393,6 +397,6 @@ class BooksController extends Controller
         ]);
 
         //tampilkan index buku
-        return redirect()->route('books.index');
+        return view('books.import-review')->with(compact('books'));
     }
 }
